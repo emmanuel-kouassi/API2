@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController
+/*@RestController
 @RequestMapping("/api/notes")
 @CrossOrigin(origins = "http://localhost:5173")
 public class NoteController {
@@ -47,4 +47,4 @@ public class NoteController {
             return ResponseEntity.internalServerError().body("Erreur serveur : " + e.getMessage());
         }
     }
-}
+}*/
