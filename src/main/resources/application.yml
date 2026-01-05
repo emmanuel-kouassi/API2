@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: SAE
+  datasource:
+    url: jdbc:mariadb://mysql-1a8b396-emmanuelkouassi340-4ffb.l.aivencloud.com:21792/defaultdb?sslMode=trust
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MariaDBDialect
+stripe:
+  api:
+    key: ${STRIPE_API_KEY}
