@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AttestationService {
-
-   //@Autowired private JavaMailSender mailSender;
+    
     @Autowired private AttestationRepository attestationRepository;
 
     // Nom de méthode aligné avec le Controller
