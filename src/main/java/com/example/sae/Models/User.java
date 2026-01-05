@@ -21,7 +21,6 @@ public class User extends Personne {
 
     @Column(name = "ville_region")
     private String villeRegion;
-    private String mail;
     private String telephone;
     private String role;
 
