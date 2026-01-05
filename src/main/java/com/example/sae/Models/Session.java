@@ -1,6 +1,7 @@
 package com.example.sae.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -22,7 +23,7 @@ public class Session {
 
     @ManyToOne
     @JoinColumn(name = "id_formation")
-    @JsonBackReference
+    @JsonIgnoreProperties("sessions")
     private Formation formation;
 
     // DECOMMENTE CES LIGNES
