@@ -119,4 +119,14 @@ public class AdminController {
     public List<Paiement> getAllPaiements() {
         return paiementRepository.findAll();
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getPaiementsByUser(@PathVariable Long userId) {
+        try {
+            // Cette méthode doit être ajoutée dans PaiementRepository.java d'abord
+            return ResponseEntity.ok(paiementRepository.findByUserId(userId));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erreur : " + e.getMessage());
+        }
+    }
 }
