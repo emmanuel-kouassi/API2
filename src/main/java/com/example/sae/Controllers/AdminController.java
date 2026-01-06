@@ -132,12 +132,6 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/sessions/user/{userId}")
-    public List<Session> getSessionsByUserId(@PathVariable Long userId) {
-        return adminService.listeSessions().stream()
-                .filter(s -> s.getUser() != null && s.getUser().getId().equals(userId))
-                .toList();
-    }
 
     // Supprimer un paiement par son ID
     @DeleteMapping("/paiements/{id}")
