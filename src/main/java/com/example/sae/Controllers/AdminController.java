@@ -17,7 +17,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private PaiementRepository paiementRepository;
 
     // Créer un utilisateur
