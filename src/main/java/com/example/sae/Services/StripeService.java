@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StripeService {
 
-    @Value("sk_test_51SjjXKJ6ZZBcPg42ZPODCKaaqdAQCWOvwIykHMBrrxnvWsv3Awxyqrc0TowUm31DVQbbvIVCAptqAoIvFdifxKqD0021hzRTcr}")
+    @Value("sk_test_51SjjXKJ6ZZBcPg42ZPODCKaaqdAQCWOvwIykHMBrrxnvWsv3Awxyqrc0TowUm31DVQbbvIVCAptqAoIvFdifxKqD0021hzRTcr")
     private String secretKey;
 
     public com.stripe.model.checkout.Session createStripeSession(User user, Session session, String successUrl, String cancelUrl) throws StripeException {
