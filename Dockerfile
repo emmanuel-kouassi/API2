@@ -6,7 +6,7 @@ RUN rm -f src/main/resources/application.yml
 
 # On crée un fichier propre SANS les configurations de mail
 RUN printf "spring.application.name=SAE\n\
-spring.datasource.url=jdbc:mariadb://mysql-1a8b396-emmanuelkouassi340-4ffb.l.aivencloud.com:21792/defaultdb?sslMode=trust\n\
+spring.datasource.url=jdbc:mariadb://mysql-1a8b396-emmanuelkouassi340-4ffb.l.aivencloud.com:21792/defaultdb?sslMode=REQUIRED\n\
 spring.datasource.username=\${SPRING_DATASOURCE_USERNAME}\n\
 spring.datasource.password=\${SPRING_DATASOURCE_PASSWORD}\n\
 spring.datasource.driver-class-name=org.mariadb.jdbc.Driver\n\

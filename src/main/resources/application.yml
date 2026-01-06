@@ -2,7 +2,7 @@ spring:
   application:
     name: SAE
   datasource:
-    url: jdbc:mariadb://mysql-1a8b396-emmanuelkouassi340-4ffb.l.aivencloud.com:21792/defaultdb?sslMode=trust
+    url: jdbc:mariadb://mysql-1a8b396-emmanuelkouassi340-4ffb.l.aivencloud.com:21792/defaultdb?sslMode=REQUIRED
     username: avnadmin
     password: AVNS_PNejXdUd0i3dIRuOtLU
     driver-class-name: org.mariadb.jdbc.Driver
