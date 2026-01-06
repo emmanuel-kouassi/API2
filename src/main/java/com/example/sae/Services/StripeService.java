@@ -1,6 +1,6 @@
 package com.example.sae.Services;
 
-import com.example.sae.Models.Session;
+import com.example.sae.Models.Formation;
 import com.example.sae.Models.User;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -14,12 +14,11 @@ public class StripeService {
     @Value("sk_test_51SjjXKJ6ZZBcPg42ZPODCKaaqdAQCWOvwIykHMBrrxnvWsv3Awxyqrc0TowUm31DVQbbvIVCAptqAoIvFdifxKqD0021hzRTcr")
     private String secretKey;
 
-    public com.stripe.model.checkout.Session createStripeSession(User user, Session session, String successUrl, String cancelUrl) throws StripeException {
+    public com.stripe.model.checkout.Session createStripeSession(User user, Formation formation, String successUrl, String cancelUrl) throws StripeException {
         Stripe.apiKey = secretKey;
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                // ICI : On remplace les liens fixes par les variables successUrl et cancelUrl
                 .setSuccessUrl(successUrl)
                 .setCancelUrl(cancelUrl)
                 .setCustomerEmail(user.getMail())
@@ -27,9 +26,9 @@ public class StripeService {
                         .setQuantity(1L)
                         .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
                                 .setCurrency("eur")
-                                .setUnitAmount((long)(session.getFormation().getPrix() * 100))
+                                .setUnitAmount((long) (formation.getPrix() * 100))
                                 .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                        .setName("Formation: " + session.getFormation().getTitre())
+                                        .setName("Formation : " + formation.getTitre())
                                         .build())
                                 .build())
                         .build())

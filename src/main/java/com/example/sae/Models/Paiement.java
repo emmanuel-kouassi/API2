@@ -2,10 +2,8 @@ package com.example.sae.Models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
-// Paiement.java
 @Entity
 @Data
 public class Paiement {
@@ -14,18 +12,16 @@ public class Paiement {
     private Long idPaiement;
 
     private Double montant;
-    private boolean statut; // true = effectué
+    private boolean statut; // false par défaut
     private LocalDateTime datePaiement;
-
-    // Nouveau : Stocker l'identifiant de transaction Stripe
     private String stripeSessionId;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
 
-    // Ajout du lien vers la session payée
+    // On remplace ou on ajoute le lien vers Formation
     @ManyToOne
-    @JoinColumn(name = "id_session")
-    private Session session;
+    @JoinColumn(name = "id_formation")
+    private Formation formation;
 }

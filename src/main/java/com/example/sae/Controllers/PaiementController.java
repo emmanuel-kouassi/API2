@@ -1,9 +1,9 @@
 package com.example.sae.Controllers;
 
+import com.example.sae.Models.Formation;
 import com.example.sae.Models.Paiement;
-import com.example.sae.Models.Session;
 import com.example.sae.Models.User;
-import com.example.sae.Services.SessionService;
+import com.example.sae.Services.FormationService;
 import com.example.sae.Services.StripeService;
 import com.example.sae.Services.UserService;
 import com.example.sae.repository.PaiementRepository;
@@ -25,36 +25,32 @@ public class PaiementController {
     @Autowired private StripeService stripeService;
     @Autowired private PaiementRepository paiementRepository;
     @Autowired private UserService userService;
-    @Autowired private SessionService sessionService;
+    @Autowired private FormationService formationService;
 
     @PostMapping("/checkout")
     public Map<String, String> createCheckout(@RequestBody Map<String, Long> data) throws StripeException {
         User user = userService.getById(data.get("userId"));
-        Session session = sessionService.getById(data.get("sessionId"));
+        // On récupère directement la formation
+        Formation formation = formationService.getById(data.get("formationId"));
 
-        // On récupère l'ID de la formation pour le lien de retour
-        Long formationId = session.getFormation().getIdFormation();
-
-        // Configuration des URLs de redirection
         String successUrl = "http://localhost:5173/suivi";
-        String cancelUrl = "http://localhost:5173/details/" + formationId;
+        String cancelUrl = "http://localhost:5173/details/" + formation.getIdFormation();
 
-        // Appelle ton StripeService en lui passant ces URLs
+        // On adapte l'appel au service (voir étape suivante)
         com.stripe.model.checkout.Session stripeSession = stripeService.createStripeSession(
                 user,
-                session,
+                formation,
                 successUrl,
                 cancelUrl
         );
 
-        // Enregistrement du paiement en base (déjà dans ton code)
         Paiement paiement = new Paiement();
         paiement.setUser(user);
-        paiement.setSession(session);
-        paiement.setStatut(false); // Sera mis à true par le webhook
+        paiement.setFormation(formation); // Assurez-vous d'avoir ce champ dans votre modèle Paiement
+        paiement.setStatut(false);
         paiement.setDatePaiement(LocalDateTime.now());
         paiement.setStripeSessionId(stripeSession.getId());
-        paiement.setMontant(session.getFormation().getPrix());
+        paiement.setMontant(formation.getPrix());
 
         paiementRepository.save(paiement);
 
