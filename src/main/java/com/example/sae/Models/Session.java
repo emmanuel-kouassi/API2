@@ -1,43 +1,37 @@
 package com.example.sae.Models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.Data;
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
-@Data
 public class Session {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_session")
-    private Long idSession;
+    private Long id;
 
-    private LocalDate dateDebut;
-    private LocalDate dateFin;
-    private String lieu;
-    private Integer nbPlacesMax;
-    private Integer nbPlacesDispo;
+    private LocalDateTime date;
 
+    // LA RELATION MANQUANTE EST ICI
     @ManyToOne
-    @JoinColumn(name = "id_formation")
-    @JsonIgnoreProperties("sessions")
-    private Formation formation;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id") // Nom de la colonne dans ta table SQL
+    @JoinColumn(name = "user_id")
     private User user;
 
-    // DECOMMENTE CES LIGNES
-    @ManyToOne
-    @JoinColumn(name = "id_intervenant")
-    private Intervenant intervenant;
+    // Constructeurs
+    public Session() {}
 
-    @OneToMany(mappedBy = "session")
-    private List<SuiviPresence> presences;
+    // Getters et Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    // SUPPRIME la méthode getIntervenant() manuelle qui renvoie null
-    // @Data s'occupera de générer un vrai getter et un vrai setter
+    public LocalDateTime getDate() { return date; }
+    public void setDate(LocalDateTime date) { this.date = date; }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
