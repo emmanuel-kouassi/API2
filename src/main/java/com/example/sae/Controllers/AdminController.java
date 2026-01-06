@@ -1,10 +1,8 @@
 package com.example.sae.Controllers;
 
-import com.example.sae.Models.Formation;
-import com.example.sae.Models.Intervenant;
-import com.example.sae.Models.Session;
-import com.example.sae.Models.User;
+import com.example.sae.Models.*;
 import com.example.sae.Services.AdminService;
+import com.example.sae.repository.PaiementRepository;
 import com.example.sae.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +18,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
     private UserRepository userRepository;
+    private PaiementRepository paiementRepository;
 
     // Créer un utilisateur
     @PostMapping("/users")
@@ -114,5 +113,10 @@ public class AdminController {
         // Vérifie si c'est bien "supprimerSession" dans ton AdminService
         adminService.supprimerSession(id);
         return ResponseEntity.noContent().build();
+    }
+    // voir tout les paiements
+    @GetMapping("/paiements")
+    public List<Paiement> getAllPaiements() {
+        return paiementRepository.findAll();
     }
 }
