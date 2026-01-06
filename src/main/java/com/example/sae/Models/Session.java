@@ -26,6 +26,10 @@ public class Session {
     @JsonIgnoreProperties("sessions")
     private Formation formation;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id") // Nom de la colonne dans ta table SQL
+    private User user;
+
     // DECOMMENTE CES LIGNES
     @ManyToOne
     @JoinColumn(name = "id_intervenant")
