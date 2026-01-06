@@ -131,4 +131,11 @@ public class AdminController {
             return ResponseEntity.status(500).body("Erreur : " + e.getMessage());
         }
     }
+
+    // Supprimer un paiement par son ID
+    @DeleteMapping("/paiements/{id}")
+    public ResponseEntity<Void> supprimerPaiement(@PathVariable Long id) {
+        paiementRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
