@@ -15,10 +15,8 @@ public class User extends Personne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Long id;
-
     @Column(name = "adresse_postale")
     private String adressePostale;
-
     @Column(name = "ville_region")
     private String villeRegion;
     private String telephone;

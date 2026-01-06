@@ -12,7 +12,7 @@ public abstract class Personne {
     private Long id;
     private String nom;
     private String prenom;
-    private String mail; // Ajouté ici pour être commun à tous
+    private String mail;
     private String login;
     private String password;
 
