@@ -2,8 +2,10 @@ package com.example.sae.Controllers;
 
 import com.example.sae.Models.*;
 import com.example.sae.Services.AdminService;
+import com.example.sae.repository.IntervenantRepository;
 import com.example.sae.repository.PaiementRepository;
 import com.example.sae.repository.UserRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class AdminController {
     private UserRepository userRepository;
     @Autowired
     private PaiementRepository paiementRepository;
+    @Setter
+    @Autowired
+    private com.example.sae.repository.IntervenantRepository intervenantRepository;
 
     // Créer un utilisateur
     @PostMapping("/users")
@@ -63,8 +68,8 @@ public class AdminController {
 
     // Récupérer tous les intervenants
     @GetMapping("/intervenants")
-    public List<Intervenant> getAllIntervenants() {
-        return adminService.listeIntervenants();
+    public List<com.example.sae.Models.Intervenant> getAllIntervenants() {
+        return intervenantRepository.findAll();
     }
 
     // Creer une formation
@@ -72,6 +77,7 @@ public class AdminController {
     public Formation saveFormation(@RequestBody Formation formation) {
         return adminService.creerFormation(formation);
     }
+
     // modifier une formation
     @PutMapping("/formations/{id}")
     public Formation updateFormation(@PathVariable Long id, @RequestBody Formation formation) {
@@ -139,4 +145,9 @@ public class AdminController {
         paiementRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    public IntervenantRepository getIntervenantRepository() {
+        return intervenantRepository;
+    }
+
 }
