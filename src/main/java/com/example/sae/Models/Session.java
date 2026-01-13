@@ -1,6 +1,7 @@
 package com.example.sae.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Session {
 
     @ManyToOne
     @JoinColumn(name = "id_user") // Nom de la colonne dans votre table SQL
+    @JsonIgnore
     private User user;
 
     @ManyToOne
