@@ -22,6 +22,10 @@ public class Session {
     private Integer nbPlacesDispo;
 
     @ManyToOne
+    @JoinColumn(name = "id_user") // Nom de la colonne dans votre table SQL
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "id_formation")
     @JsonIgnoreProperties("sessions")
     private Formation formation;
