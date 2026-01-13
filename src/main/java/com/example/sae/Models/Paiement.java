@@ -15,6 +15,9 @@ public class Paiement {
     private boolean statut; // false par défaut
     private LocalDateTime datePaiement;
     private String stripeSessionId;
+    private String invoiceUrl; // Le lien vers le PDF Stripe
+    public String getInvoiceUrl() { return invoiceUrl; }
+    public void setInvoiceUrl(String invoiceUrl) { this.invoiceUrl = invoiceUrl; }
 
     @ManyToOne
     @JoinColumn(name = "id_user")
