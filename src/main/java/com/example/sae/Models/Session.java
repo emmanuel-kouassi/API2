@@ -5,11 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = "user")
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +35,7 @@ public class Session {
     @JsonIgnoreProperties("sessions")
     private Formation formation;
 
-    // DECOMMENTE CES LIGNES
+
     @ManyToOne
     @JoinColumn(name = "id_intervenant")
     private Intervenant intervenant;
