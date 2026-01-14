@@ -1,18 +1,14 @@
 package com.example.sae.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = "user")
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,16 +22,11 @@ public class Session {
     private Integer nbPlacesDispo;
 
     @ManyToOne
-    @JoinColumn(name = "id_user") // Nom de la colonne dans votre table SQL
-    @JsonIgnore
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "id_formation")
     @JsonIgnoreProperties("sessions")
     private Formation formation;
 
-
+    // DECOMMENTE CES LIGNES
     @ManyToOne
     @JoinColumn(name = "id_intervenant")
     private Intervenant intervenant;
