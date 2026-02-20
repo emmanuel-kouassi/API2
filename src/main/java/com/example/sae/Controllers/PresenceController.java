@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/presences")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173,https://swipe2.vercel.app/")
 public class PresenceController {
     @Autowired
     private PresenceService presenceService;

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/login")
-@CrossOrigin(origins = "http://localhost:5173") // Autorise ton frontend Vite
+@CrossOrigin(origins = "http://localhost:5173,https://swipe2.vercel.app/") // Autorise ton frontend Vite
 public class AuthController {
 
     @Autowired

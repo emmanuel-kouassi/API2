@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/paiements")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173,https://swipe2.vercel.app/")
 public class PaiementController {
 
     @Autowired private StripeService stripeService;

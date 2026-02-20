@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173,https://swipe2.vercel.app/")
 @RequestMapping("/api/formations")
 public class FormationController {
     @Autowired
